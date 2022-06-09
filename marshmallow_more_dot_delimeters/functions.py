@@ -67,7 +67,7 @@ def get_results(Schema, model, fields):
         return {
             "results": None,
             "errors": [{
-                "code": 2,
+                "code": 1,
                 "message": "Fields are incorrect"
             }]}
 
@@ -77,7 +77,7 @@ def get_results(Schema, model, fields):
         return {
             "results": None,
             "errors": [{
-                "code": 2,
+                "code": 1,
                 "message": "Fields are incorrect"
             }]}
 

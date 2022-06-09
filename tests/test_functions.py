@@ -1,5 +1,5 @@
 # No tests yet
-from marshmallow_more_delimeters.functions import get_results
+from marshmallow_more_dot_delimeters.functions import get_results
 from marshmallow import Schema, fields
 
 class User:
@@ -117,6 +117,16 @@ def test_collection():
         {'subblog': {'blog': {'author': {'name': 'Monty'}}}},
         {'subblog': {'blog': {'author': {'name': 'Monty'}}}},
         {'subblog': {'blog': {'author': {'name': 'Harry'}}}}]}
+
+def test_multiple_field():
+    res = get_results(CollectionOfSubSubBlogsSchema, collectionOfSubSubBlogs,
+                      ["subsubblogs.subblog.blog.author.name", "subsubblogs.subblog.title"])
+    print(res)
+    assert res["results"] == {'subsubblogs': [
+        {'subblog': {'blog': {'author': {'name': 'Monty'}}, 'title': 'Lorem'}},
+        {'subblog': {'blog': {'author': {'name': 'Monty'}}, 'title': 'Lorem2'}},
+        {'subblog': {'blog': {'author': {'name': 'Monty'}}, 'title': 'Lorem2'}},
+        {'subblog': {'blog': {'author': {'name': 'Harry'}}, 'title': 'Lorem2'}}]}
 
 
 def test_incorrect_fields():
